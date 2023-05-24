@@ -434,22 +434,6 @@ public:
       }
       polyData->GetPointData()->SetTangents(tangents);
     }
-
-    if (mesh->HasVertexColors(0))
-    {
-      vtkNew<vtkFloatArray> colors;
-      colors->SetNumberOfComponents(4);
-      colors->SetName("Colors");
-      colors->SetNumberOfTuples(mesh->mNumVertices);
-      for (unsigned int i = 0; i < mesh->mNumVertices; i++)
-      {
-        const aiColor4D& c = mesh->mColors[0][i];
-        float tuple[4] = { c.r, c.g, c.b, c.a };
-        colors->SetTypedTuple(i, tuple);
-      }
-      polyData->GetPointData()->SetScalars(colors);
-    }
-
     vtkNew<vtkCellArray> verticesCells;
     vtkNew<vtkCellArray> linesCells;
     vtkNew<vtkCellArray> polysCells;
